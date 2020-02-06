@@ -1,0 +1,25 @@
+{
+  "name": "nodetest3",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev":"nodemon ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "^2.7.4",
+    "express": "^4.17.1",
+    "http": "0.0.0",
+    "http-errors": "~1.6.3",
+    "jquery": "^3.4.1",
+    "jsdom": "^16.1.0",
+    "mongoose": "^5.8.11",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
