@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <form id="formAddUser" name="addUser" method="post" action="/add">
+        <h1>Number: <%= number %></h1>
+        <h1>Name:</h1>
+        <input id="inputName" type="text" placeholder="name" name="name"/>
+        <button id="btnEnter" type="submit">Enter</button>
+    </form>
+    <form id="formAddUser" name="addUser" method="get" action="/get">
+      <h1>Number: <%= number %></h1>
+      <input id="inputNumber" type="text" placeholder="number" name="number"/>
+      <button id="btnGet" type="submit">Get</button>
+    </form>
+    <% for(let i = 0; i < users.length; i++) { %>
+      <div>
+          <p><%= users[i].number %></p>
+          <p><%= users[i].name %></p>
+      </div>
+    <% } %>
+  </body>
+</html>
