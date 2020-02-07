@@ -8,14 +8,14 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017', {useNewUrlParser: true});
 
+var mesTacosRouter = require('./routes/mesTacos');
+var signinRouter = require('./routes/signin');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var creationTacosRouter = require('./routes/creationTacos');
 var randomTacosRouter = require('./routes/randomTacos');
 var dataTacosRouter = require('./routes/dataTacos.js');
 var signupRouter = require('./routes/signup.js');
-
-
 
 //Schemas
 const userSchema = mongoose.Schema({
@@ -38,12 +38,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/index', indexRouter);
 app.use('/users', usersRouter);
+app.use('/signin',signinRouter);
+app.use('/mesTacos',mesTacosRouter);
 app.use('/creationTacos', creationTacosRouter);
 app.use('/randomTacos',randomTacosRouter);
 app.use('/dataTacos', dataTacosRouter);
 app.use('/signup', signupRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
