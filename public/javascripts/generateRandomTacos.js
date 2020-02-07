@@ -89,7 +89,7 @@ function generateRandomTaille()
     
     var labelToAdd='<h3 class =element>Votre Tacos ('+tailleTacos+') : </h3>';
     $(page).append(labelToAdd);
-    $(page).append('</br>');
+    //$(page).append('</br>');
     var viandeOfTacos = "<h4 class=element> Viande(s) : ";
     var saucesOfTacos = "<h4 class=element> Sauce(s) : ";
     var suppOfTacos   = "<h4 class=element> Supplément(s) : ";
