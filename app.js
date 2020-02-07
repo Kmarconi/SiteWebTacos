@@ -4,8 +4,26 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//MONGO DB
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017', {useNewUrlParser: true});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var creationTacosRouter = require('./routes/creationTacos');
+var dataTacosRouter = require('./routes/dataTacos.js');
+var signupRouter = require('./routes/signup.js');
+
+
+
+//Schemas
+const userSchema = mongoose.Schema({
+  username : String,
+  password : String
+});
+module.exports = mongoose.model('User', userSchema);
+
+
 
 var app = express();
 
@@ -21,6 +39,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/creationTacos', creationTacosRouter);
+app.use('/dataTacos', dataTacosRouter);
+app.use('/signup', signupRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
