@@ -56,6 +56,6 @@ npm run start
 Créer un dossier 
 Dans visual studio, File/Add folder to workspace
 Avec git cmd, faire les commandes :
-git config --global -user.email mail
+git config --global user.email mail
 git clone lien
 ```
