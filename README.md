@@ -54,8 +54,8 @@ npm run start
 - Lier Visual Studio Code à Github :
 ```
 Créer un dossier 
-Dans visual studio, File/Add folder to workspace
-Avec git cmd, faire les commandes :
+Avec git cmd, aller dans le dossier et faire les commandes :
 git config --global user.email mail
 git clone lien
+Dans visual studio, File/Add folder to workspace et choisir le dossier cloné situé dans le dossier que vous avez créé
 ```
