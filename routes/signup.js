@@ -6,7 +6,7 @@ var crypto = require('crypto');
 var User = require('../app');
 
 router.get('/', function(req, res, next) {
-
+    res.setHeader('Content-Type', 'text/html');
     const username = req.query.username;
     const password = crypto.createHash('sha256').update(req.query.password).digest('base64');
 
