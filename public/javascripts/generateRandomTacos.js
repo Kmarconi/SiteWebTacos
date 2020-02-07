@@ -114,7 +114,7 @@ function generateRandomTaille()
     var labelToAdd='<h3 class =element>Prix : '+Math.max( Math.round(prixTacos * 10) / 10, 2.8 ).toFixed(2)+' € </h3>';
     $(page).append(labelToAdd);
     boutonRandom.style.marginRight="20px";
-    $(boutonRandom).after('<button class="btn btn-default btn-lg" marginLeft=25px role="button" onclick="mesTacos.ejs">Enregistrer le tacos</button>');
+    $(boutonRandom).after('<button class="btn btn-default btn-lg" marginLeft=25px role="button" onclick="mesTacos">Enregistrer le tacos</button>');
 
     //console.log(dictTacos);
     //console.log("Prix : " +prixTacos +" €");

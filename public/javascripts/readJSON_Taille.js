@@ -199,7 +199,7 @@ function deleteSupplement(button){
     }
     
     $(page).append('</br><h3>Prix : '+prix+' €</h3>');
-    $(page).append('<a id="buttonNewTacos" class="btn btn-default btn-lg" role="button" href="CreationTacos.ejs">Faire un autre tacos</a>');
+    $(page).append('<a id="buttonNewTacos" class="btn btn-default btn-lg" role="button" href="CreationTacos">Faire un autre tacos</a>');
     $(page).append('<button class="btn btn-action btn-lg" role="button">Ajouter à "mes tacos"</button>');
     var buttonNewTacos = document.getElementById("buttonNewTacos");
     buttonNewTacos.style.marginRight="20px";
