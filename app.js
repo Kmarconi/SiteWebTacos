@@ -11,6 +11,7 @@ mongoose.connect('mongodb://localhost:27017', {useNewUrlParser: true});
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var creationTacosRouter = require('./routes/creationTacos');
+var randomTacosRouter = require('./routes/randomTacos');
 var dataTacosRouter = require('./routes/dataTacos.js');
 var signupRouter = require('./routes/signup.js');
 
@@ -40,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/creationTacos', creationTacosRouter);
+app.use('/randomTacos',randomTacosRouter);
 app.use('/dataTacos', dataTacosRouter);
 app.use('/signup', signupRouter);
 
