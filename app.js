@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 //MONGO DB
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017', {useNewUrlParser: true, useUnifiedTopology: true});
 
 var mesTacosRouter = require('./routes/mesTacos');
 var signinRouter = require('./routes/signin');
@@ -17,12 +17,12 @@ var randomTacosRouter = require('./routes/randomTacos');
 var dataTacosRouter = require('./routes/dataTacos.js');
 var signupRouter = require('./routes/signup.js');
 
-//Schemas
-const userSchema = mongoose.Schema({
+/*//Schemas
+const UserSchema = new mongoose.Schema({
   username : String,
   password : String
 });
-module.exports = mongoose.model('User', userSchema);
+module.exports.User = mongoose.model('User', UserSchema);*/
 
 
 

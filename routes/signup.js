@@ -3,20 +3,30 @@ var router = express.Router();
 var crypto = require('crypto');
 
 //Import schema
-var User = require('../app');
+var User = require('../models/user');
 
 router.get('/', function(req, res, next) {
-    res.setHeader('Content-Type', 'text/html');
+
     const username = req.query.username;
-    const password = crypto.createHash('sha256').update(req.query.password).digest('base64');
+    const pwd = req.query.password;
+
+    if(!username || !pwd) {
+        res.send("Missing arguments !!");
+    }
+
+    const salt = crypto.randomBytes(16);
+    
+    const password = crypto.createHash('sha256').update(pwd + salt).digest('base64');
 
     const user = new User({
+        salt: salt,
         username: username,
         password: password
     });
 
     user.save();
 
+    res.status(204).send();
 });
 
 module.exports = router;
