@@ -7,14 +7,12 @@ var User = require('../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.setHeader('Content-Type', 'text/html');
-  res.render('signup', {});
+    res.render('signup', {});
 });
 
-router.get('/create', function(req, res, next) {
-
-    const username = req.query.username;
-    const pwd = req.query.password;
+router.post('/register', function(req, res, next){
+    const username = req.body.username;
+    const pwd = req.body.password;
 
     if(!username || !pwd) {
         res.send("Missing arguments !!");
@@ -31,8 +29,11 @@ router.get('/create', function(req, res, next) {
     });
 
     user.save();
-
-    res.status(204).send();
+    //window.location.href='index'
+    //console.log(res.location())
+    res.redirect('../index')
+    //res.status(204).send();
+    //res.render('index',{ title: 'Express' });
 });
 
 module.exports = router;
