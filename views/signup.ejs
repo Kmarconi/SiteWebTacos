@@ -72,16 +72,16 @@
 							<p class="text-center text-muted">Déjà un compte ? <a href="signin">Connecte toi !</a></p>
 							<hr>
 
-							<form>
+							<form id="formAddUser" name ="addUser" method="post" action="signup/register">
 								<div class="top-margin">
 									<label>Pseudo<span class="text-danger">*</span></label>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" placeholder="username" name="username">
 								</div>
 
 								<div class="row top-margin">
 									<div class="col-sm-6">
 										<label>Mot de passe <span class="text-danger">*</span></label>
-										<input type="text" class="form-control">
+										<input type="text" class="form-control" placeholder="password" name="password">
 									</div>
 									<div class="col-sm-6">
 										<label>Confirmer le mot de passe<span class="text-danger">*</span></label>
