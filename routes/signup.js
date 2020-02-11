@@ -28,8 +28,11 @@ router.post('/register', function(req, res, next){
     });
 
     user.save();
-
-    res.status(204).send();
+    //window.location.href='index'
+    //console.log(res.location())
+    res.redirect('../index')
+    //res.status(204).send();
+    //res.render('index',{ title: 'Express' });
 });
 
 module.exports = router;
