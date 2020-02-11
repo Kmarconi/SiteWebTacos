@@ -5,7 +5,13 @@ var crypto = require('crypto');
 //Import schema
 var User = require('../models/user');
 
+/* GET home page. */
 router.get('/', function(req, res, next) {
+  res.setHeader('Content-Type', 'text/html');
+  res.render('signup', {});
+});
+
+router.get('/create', function(req, res, next) {
 
     const username = req.query.username;
     const pwd = req.query.password;
@@ -16,7 +22,7 @@ router.get('/', function(req, res, next) {
 
     const salt = crypto.randomBytes(16);
     
-    const password = crypto.createHash('sha256').update(pwd + salt).digest('base64');
+    const password = crypto.createHash('sha512').update(pwd + salt).digest('base64');
 
     const user = new User({
         salt: salt,

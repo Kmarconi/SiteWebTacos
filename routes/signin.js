@@ -16,11 +16,33 @@ router.get('/verify', function(req, res, next) {
   const username = req.query.username;
   const pwd = req.query.password;
 
-  if(false) {
-    res.send("non");
+  if(!username || !pwd) {
+      res.send("Missing arguments !!");
   }
 
-  res.send("oui");
+  Promise.all([
+    User.findOne({ username: username }).exec()
+  ])
+  .then(function(data) {
+
+    const user = data[0];
+
+    if(!user) {
+      res.send("refused");
+    }
+      
+    const password = crypto.createHash('sha512').update(pwd + user.salt).digest('base64');
+  
+    if(password == user.password) {
+      res.send("accepted");
+    }
+  
+    res.send("refused");
+  })
+  .catch(function(err){
+    res.send("refused (error)");
+  });
+
 
 })
 

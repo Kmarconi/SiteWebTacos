@@ -75,18 +75,20 @@
 							<form>
 								<div class="top-margin">
 									<label>Pseudo<span class="text-danger">*</span></label>
-									<input type="text" class="form-control">
+									<input id="username" type="text" class="form-control">
 								</div>
 								<div class="top-margin">
 									<label>Mot de passe <span class="text-danger">*</span></label>
-									<input type="password" class="form-control">
+									<input id="password" type="password" class="form-control">
 								</div>
 
 								<hr>
 
 								<div class="row">
 									<div class="col-lg-4 text-right">
-										<button class="btn btn-action" type="submit">Connexion</button>
+										<button id="verifyConnexionButton" class="btn btn-action" type="submit">Connexion</button>
+										<font id="verifyResultText" color="red">Result : ?</font>
+										<button id="testConnexionButton" class="btn btn-action" type="submit">Test your connexion</button>
 									</div>
 								</div>
 							</form>
@@ -162,7 +164,7 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2014, Your name. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
+								Copyright &copy; 2014, Your name. (Kimi no na wa) Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
 							</p>
 						</div>
 					</div>
@@ -182,5 +184,6 @@
 	<script src="style/js/headroom.min.js"></script>
 	<script src="style/js/jQuery.headroom.min.js"></script>
 	<script src="style/js/template.js"></script>
+    <script src="javascripts/signin.js"></script>
 </body>
 </html>

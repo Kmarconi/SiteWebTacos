@@ -17,13 +17,6 @@ var randomTacosRouter = require('./routes/randomTacos');
 var dataTacosRouter = require('./routes/dataTacos.js');
 var signupRouter = require('./routes/signup.js');
 
-/*//Schemas
-const UserSchema = new mongoose.Schema({
-  username : String,
-  password : String
-});
-module.exports.User = mongoose.model('User', UserSchema);*/
-
 
 
 var app = express();
