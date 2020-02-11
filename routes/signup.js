@@ -6,7 +6,10 @@ var crypto = require('crypto');
 var User = require('../models/user');
 
 router.get('/', function(req, res, next) {
+    res.render('signup', {});
+});
 
+router.get('/register', function(req, res, next){
     const username = req.query.username;
     const pwd = req.query.password;
 
@@ -28,6 +31,5 @@ router.get('/', function(req, res, next) {
 
     res.status(204).send();
 });
-
 
 module.exports = router;
