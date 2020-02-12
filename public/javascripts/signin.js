@@ -4,14 +4,14 @@ var verifyResult;
 
 $(document).ready(function() {
 
-    /*$("#testConnexionButton").click(function() {
+    $("#testConnexionButton").click(function() {
 
-        if($.cookie("session")) {
-            $('#verifyResultText').text(function(i, oldText) {
+        checkCookie();
+            /*$('#verifyResultText').text(function(i, oldText) {
                 return "Verified !!";
-            });
-        }
-    });*/
+            });*/
+        
+    });
     
     $("#verifyConnexionButton").click(function() {
 
@@ -28,18 +28,46 @@ $(document).ready(function() {
                 return verifyResult;
             });
 
-            /*if(verifyResult == "accepted") {
-                var date = new Date();
-                date.setTime(date.getTime() + (minutes * 60000));
-                $.cookie("session", username, { expires: date });
-            }*/
+            if(verifyResult == "accepted") {
+                createCookie("session",username,2);
+            }
 
         });
 
     });
 });
-
-function signin() {
-
-    
+function createCookie(cookieName,cookieValue,daysToExpire)
+{
+    var date = new Date();
+    date.setTime(date.getTime()+(daysToExpire*24*60*60*1000));
+    document.cookie = cookieName + "=" + cookieValue + "; expires=" + date.toGMTString();
+}
+function accessCookie(cookieName)
+{
+    var name = cookieName + "=";
+    var allCookieArray = document.cookie.split(';');
+    for(var i=0; i<allCookieArray.length; i++)
+    {
+        var temp = allCookieArray[i].trim();
+        if (temp.indexOf(name)==0)
+        return temp.substring(name.length,temp.length);
+    }
+    return "";
+}
+function checkCookie()
+{
+    var user = accessCookie("session");
+    if (user!="")
+    {
+        alert("Welcome Back " + user + "!!!");
+    }
+    /*else
+    {
+        user = prompt("Please enter your name");
+        num = prompt("How many days you want to store your name on your computer?");
+        if (user!="" && user!=null)
+        {
+            createCookie("testCookie", user, num);
+        }
+    }*/
 }
