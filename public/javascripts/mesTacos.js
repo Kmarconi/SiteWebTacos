@@ -1,6 +1,25 @@
 var verifyResult;
 
+var tacosTab;
+
 $(document).ready(function() {
+
+    //Récupérer de tous les tacos d'un utilisateur
+    $.when(
+        $.get("http://localhost:3000/mesTacos/getAll", {username: "Thibault"}, function(data,status) {
+            tacosTab = data;
+        },'json'),
+    )
+    .done(function() {
+        //Utilisation du tableau de tacos
+        alert(tacosTab);
+
+        //Affichage de la note du premier par exemple
+        alert(tacosTab[0].note);
+    });
+    //
+
+
     
     //$(".nav navbar-nav pull-right").append('<li><a class="btn" href="signin">SIGN IN / SIGN UP</a></li>')
     //addtoLi();
