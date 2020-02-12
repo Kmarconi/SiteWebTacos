@@ -31,11 +31,20 @@ $(document).ready(function() {
             if(verifyResult == "accepted") {
                 createCookie("session",username,2);
             }
+            else if(verifyResult == "refused")
+            {
+                deconnection("session");
+                checkCookie();
+            }
 
         });
 
     });
 });
+function deconnection(cookieName)
+{
+    document.cookie = cookieName+"=; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+}
 function createCookie(cookieName,cookieValue,daysToExpire)
 {
     var date = new Date();
