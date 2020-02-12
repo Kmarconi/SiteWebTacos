@@ -6,23 +6,35 @@ $(document).ready(function() {
         var username = $("#username").val();
         var password = $("#password").val();
         var passwordConfirm = $("#passwordConfirm").val();
+
+        if(password != passwordConfirm) {
+            alert("Veuillez saisir des mots de passes identiques.")
+        }
+
         $.when(
-            $.post("http://localhost:3000/signup/register", {username: username, password: password, passwordConfirm:passwordConfirm},function(data,status) {
+            $.post("http://localhost:3000/signup/register", {username: username, password: password},function(data,status) {
                 verifyResult = data;
               },'text')
             )
         .done(function() {
-            console.log(username,password,passwordConfirm);
-            if (verifyResult == "refused")
+            if(verifyResult == "accepted")
             {
-                alert("Nom d'utilisateur déjà existant");
-            }
-            else if(verifyResult == "accepted")
-            {
-                alert("Compte créé");
+                //alert("Compte créé");
+                createCookie("session",username,2);
                 window.location.href="http://localhost:3000/index";
+            }
+            else
+            {
+                alert("Nom d'utilisateur déjà existant.");
             }
         });  
 
     });
 });
+
+function createCookie(cookieName,cookieValue,daysToExpire)
+{
+    var date = new Date();
+    date.setTime(date.getTime()+(daysToExpire*24*60*60*1000));
+    document.cookie = cookieName + "=" + cookieValue + "; expires=" + date.toGMTString();
+}

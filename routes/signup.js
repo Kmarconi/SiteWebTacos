@@ -15,9 +15,8 @@ router.post('/register', function(req, res, next){
 
     const username = req.body.username;
     const pwd = req.body.password;
-    const pwdConfirm = req.body.passwordConfirm;
 
-    if(!username || !pwd || !pwdConfirm) {
+    if(!username || !pwd) {
         res.send("Missing arguments !!");
     }
     
@@ -27,37 +26,27 @@ router.post('/register', function(req, res, next){
     .then(function(data) {
 
         const user = data[0];
-
-        if(user || pwd != pwdConfirm) {
-            res.send("refused");
-        }else
-        {
+        if(user) {
+            res.send("refused (user already exists)");
+        }
+        else {
             const salt = crypto.randomBytes(16);
             const password = crypto.createHash('sha512').update(pwd + salt).digest('base64');
-            
+                
             const userToAdd = new User({
                 salt: salt,
                 username: username,
                 password: password
             });
-    
+        
             userToAdd.save();
             res.send("accepted");
-            //res.redirect("http://localhost:3000/index");
         }
-            
         
     })
     .catch(function(err){
         res.send("refused (error)");
     });
 });
-var redirect = function(url, method) {
-    $('<form>', {
-        method: method,
-        action: url
-    }).submit();
-};
-
 
 module.exports = router;
