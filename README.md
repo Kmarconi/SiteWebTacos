@@ -42,13 +42,14 @@ Front :
 - Executez les commandes suivantes à la racine de votre projet :
 ```
 npm install
-npm install mongoose
-npm install express
-npm install crypto
-npm install ejs
-npm install jsdom
-npm install jquery
-npm install body-parser
+> Inutiles ?
+> npm install mongoose
+> npm install express
+> npm install crypto
+> npm install ejs
+> npm install jsdom
+> npm install jquery
+> npm install body-parser
 ```
 - Lancez le serveur :
 ```
