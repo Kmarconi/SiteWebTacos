@@ -34,9 +34,10 @@ $(document).ready(function() {
             }
             else if(verifyResult == "refused")
             {
-                deconnection("session");
+                /*deconnection("session");
                 checkCookie();
-                window.location.href="http://localhost:3000/index";
+                window.location.href="http://localhost:3000/index";*/
+                alert("Mot de passe ou nom d'utilisateur incorrect");
             }
 
         });
