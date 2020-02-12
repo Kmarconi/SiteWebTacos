@@ -179,6 +179,7 @@ function generateRandomTaille()
             $.post("http://localhost:3000/randomTacos/add", {jsonTacos:JSON.stringify(jsonTacos)},function(data,status) {
                       verifyResult = data;
                     },'text');
+            alert("Tacos rajouté dans ta liste !")
           }else{
             alert("Note incorrecte");
           }
