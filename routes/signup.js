@@ -42,7 +42,8 @@ router.post('/register', function(req, res, next){
             });
     
             userToAdd.save();
-            res.redirect(307,'../index');
+            res.send("accepted");
+            //res.redirect("http://localhost:3000/index");
         }
             
         
@@ -51,5 +52,12 @@ router.post('/register', function(req, res, next){
         res.send("refused (error)");
     });
 });
+var redirect = function(url, method) {
+    $('<form>', {
+        method: method,
+        action: url
+    }).submit();
+};
+
 
 module.exports = router;

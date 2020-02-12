@@ -20,6 +20,7 @@ $(document).ready(function() {
             else if(verifyResult == "accepted")
             {
                 alert("Compte créé");
+                window.location.href="http://localhost:3000/index";
             }
         });  
 
