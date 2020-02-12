@@ -12,6 +12,7 @@ $(document).ready(function() {
             document.location.reload();
         })
         .text("Deconnexion");
+        $("#listTop").append('<li><a class="widget-title">Connecté en tant que '+user+'</a></li>');
     }else
     {
         $("#buttonSign").text("SIGN IN / SIGN UP").attr("href","signin");
