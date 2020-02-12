@@ -30,11 +30,13 @@ $(document).ready(function() {
 
             if(verifyResult == "accepted") {
                 createCookie("session",username,2);
+                window.location.href="http://localhost:3000/index";
             }
             else if(verifyResult == "refused")
             {
                 deconnection("session");
                 checkCookie();
+                window.location.href="http://localhost:3000/index";
             }
 
         });
@@ -43,7 +45,7 @@ $(document).ready(function() {
 });
 function deconnection(cookieName)
 {
-    document.cookie = cookieName+"=; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+    document.cookie = cookieName+"=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 }
 function createCookie(cookieName,cookieValue,daysToExpire)
 {

@@ -12,7 +12,6 @@ mongoose.connect('mongodb://localhost:27017', {useNewUrlParser: true, useUnified
 var mesTacosRouter = require('./routes/mesTacos');
 var signinRouter = require('./routes/signin');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var creationTacosRouter = require('./routes/creationTacos');
 var randomTacosRouter = require('./routes/randomTacos');
 var dataTacosRouter = require('./routes/dataTacos.js');
@@ -33,7 +32,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/index', indexRouter);
-app.use('/users', usersRouter);
 app.use('/signin',signinRouter);
 app.use('/mesTacos',mesTacosRouter);
 app.use('/creationTacos', creationTacosRouter);
