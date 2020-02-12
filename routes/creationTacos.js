@@ -14,12 +14,6 @@ router.post('/add', function(req, res, next) {
   const stringTacos = req.body.jsonTacos;
   console.log(stringTacos);
   var jsonTacos = JSON.parse(stringTacos);
-  console.log(jsonTacos.user);
-  console.log(jsonTacos.taille);
-  console.log(jsonTacos.viandes);
-  console.log(jsonTacos.sauces);
-  console.log(jsonTacos.supplements);
-  console.log(jsonTacos.prix);
 
   const tacos = new Tacos({
     user: jsonTacos.user,
@@ -32,6 +26,5 @@ router.post('/add', function(req, res, next) {
   });
 
   tacos.save();
-  //res.status(204).send();
 });
 module.exports = router;

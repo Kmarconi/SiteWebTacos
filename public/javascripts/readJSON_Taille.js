@@ -236,7 +236,7 @@ function deleteSupplement(button){
           alert("Note incorrecte");
         }
       }else{
-        alert("Il faut être connecté pour ajouter un tacos à sa liste espèce de gros débile");
+        alert("Il faut être connecté pour ajouter un tacos à sa liste");
       }
       
     });
