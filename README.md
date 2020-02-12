@@ -42,6 +42,7 @@ Front :
 - Executez les commandes suivantes à la racine de votre projet :
 ```
 npm install
+```
 > Inutiles ?
 > npm install mongoose
 > npm install express
@@ -50,7 +51,6 @@ npm install
 > npm install jsdom
 > npm install jquery
 > npm install body-parser
-```
 - Lancez le serveur :
 ```
 npm run start
