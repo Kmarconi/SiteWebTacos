@@ -10,28 +10,28 @@ router.get('/', function(req, res, next) {
   res.render('CreationTacos', {});
 });
 
-router.get('/add', function(req, res, next) {
-  const taille = req.query.taille;
-  const viandes = req.query.viandes;
-  const sauces = req.query.sauces;
-  const supplements = req.query.supplements;
-  const prix = req.query.prix;
-  const note = req.query.note;
-
-  if(!taille || !viandes || !sauces || supplements || !prix || !note) {
-    res.send("Missing arguments !!");
-  }
+router.post('/add', function(req, res, next) {
+  const stringTacos = req.body.jsonTacos;
+  console.log(stringTacos);
+  var jsonTacos = JSON.parse(stringTacos);
+  console.log(jsonTacos.user);
+  console.log(jsonTacos.taille);
+  console.log(jsonTacos.viandes);
+  console.log(jsonTacos.sauces);
+  console.log(jsonTacos.supplements);
+  console.log(jsonTacos.prix);
 
   const tacos = new Tacos({
-    taille: taille,
-    viandes: viandes,
-    sauces: sauces,
-    supplements: supplements,
-    prix: prix,
-    note: note
+    user: jsonTacos.user,
+    taille: jsonTacos.taille,
+    viandes: jsonTacos.viandes,
+    sauces: jsonTacos.sauces,
+    suppléments: jsonTacos.supplements,
+    prix: jsonTacos.prix,
+    note: jsonTacos.note
   });
 
   tacos.save();
-  res.status(204).send();
+  //res.status(204).send();
 });
 module.exports = router;

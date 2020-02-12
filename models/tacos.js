@@ -1,12 +1,13 @@
 var mongoose = require('mongoose');
 
 var TacosSchema = new mongoose.Schema({
-    Taille: String,
-    Viandes: [String],
-    Sauces: [String],
-    Suppléments: [String],
-    Prix: Number,
-    Note: Number
+    user: String,
+    taille: String,
+    viandes: [String],
+    sauces: [String],
+    suppléments: [String],
+    prix: Number,
+    note: Number
 });
 
 module.exports =  mongoose.model('Tacos', TacosSchema);

@@ -10,6 +10,13 @@ var nbViandes = 0;
 var nbSup = 0;
 var idSup = 0;
 const nbSauce = 2;
+
+var taille="";
+var viandesTacos=[];
+var saucesTacos=[];
+var supplementsTacos=[];
+var prixTacos=0;
+var note=0;
 $(document).ready(function() {
 
     $.when(
@@ -155,6 +162,7 @@ function deleteSupplement(button){
     $.each(tailles['Tailles'], function(i, f){
       if(tailleSelected.value == f['NbViandes']){
         tacosText += f['Nom'];
+        taille=f['Nom'];
         prix+=Number(f['Prix']);
       }
     });
@@ -166,6 +174,7 @@ function deleteSupplement(button){
       var viandeSelected = document.getElementById("viande-select"+i);
       if(i !=0){ viande += ', ' }
       viande += viandes['Viandes'][viandeSelected.selectedIndex-1]['Nom'];
+      viandesTacos.push(viandes['Viandes'][viandeSelected.selectedIndex-1]['Nom']);
       if(viandes['Viandes'][viandeSelected.selectedIndex-1]['Prix'] != null){
         prix += Number(viandes['Viandes'][viandeSelected.selectedIndex-1]['Prix']);
       }
@@ -179,6 +188,7 @@ function deleteSupplement(button){
       if(sauceSelected.selectedIndex != 0){
         if(i !=0){ sauce += ', ' } else { sauce = '<h4>Sauce(s) : '; }
         sauce += sauces['Sauces'][sauceSelected.selectedIndex-1]['Nom'];
+        saucesTacos.push(sauces['Sauces'][sauceSelected.selectedIndex-1]['Nom']);
       }
     }
     if(sauce.length != 0){
@@ -190,23 +200,64 @@ function deleteSupplement(button){
     var supplementSection = document.getElementById("supplement-section");
     for(i=0; i<supplementSection.childElementCount; i++){
       if(i !=0){ sup += ', ' } else { sup = '<h4>Supplément(s) : '; }
-      sup += supplements['Suppléments'][supplementSection.children[i].firstChild.selectedIndex-1]['Nom'];
-      prix += Number(supplements['Suppléments'][supplementSection.children[i].firstChild.selectedIndex-1]['Prix']);
+      var currentSup = supplements['Suppléments'][supplementSection.children[i].firstChild.selectedIndex-1];
+      sup += currentSup['Nom'];
+      supplementsTacos.push(currentSup['Nom']);
+      prix += Number(currentSup['Prix']);
     }
     if(sup.length != 0){
       sup += '</h4>';
       $(page).append(sup);
     }
-    
+    prixTacos=prix;
     $(page).append('</br><h3>Prix : '+prix+' €</h3>');
     $(page).append('<a id="buttonNewTacos" class="btn btn-default btn-lg" role="button" href="CreationTacos">Faire un autre tacos</a>');
-    $(page).append('<a class="btn btn-action btn-lg" role="button" href="CreationTacos/add/?taille=>Ajouter à "mes tacos"</a>');
+    $(page).append('<button id="buttonAddTacos" class="btn btn-action btn-lg">Ajouter à "mes tacos"</button>');
     var buttonNewTacos = document.getElementById("buttonNewTacos");
     buttonNewTacos.style.marginRight="20px";
 
+    $("#buttonAddTacos").click(function() {
+      var user = accessCookie("session");
+      if(user != ""){
+        var note = prompt("Quelle note sur 10 voulez-vous attribuer à ce tacos ?");
+        if(note <=10 && note >=0){
+          var jsonTacos = new Object();
+          jsonTacos.user = user;
+          jsonTacos.taille = taille;
+          jsonTacos.viandes = viandesTacos;
+          jsonTacos.sauces = saucesTacos;
+          jsonTacos.supplements = supplementsTacos;
+          jsonTacos.prix = prixTacos;
+          jsonTacos.note = note;
+          $.post("http://localhost:3000/CreationTacos/add", {jsonTacos:JSON.stringify(jsonTacos)},function(data,status) {
+                    verifyResult = data;
+                  },'text');
+        }else{
+          alert("Note incorrecte");
+        }
+      }else{
+        alert("Il faut être connecté pour ajouter un tacos à sa liste espèce de gros débile");
+      }
+      
+    });
 
     removeContent()
     document.getElementById("taille-select").remove();
     document.getElementById("tailleText").remove();
   }
+
+
+  function accessCookie(cookieName)
+  {
+      var name = cookieName + "=";
+      var allCookieArray = document.cookie.split(';');
+      for(var i=0; i<allCookieArray.length; i++)
+      {
+          var temp = allCookieArray[i].trim();
+          if (temp.indexOf(name)==0)
+          return temp.substring(name.length,temp.length);
+      }
+      return "";
+  }
+
 
