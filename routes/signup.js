@@ -42,7 +42,7 @@ router.post('/register', function(req, res, next){
             });
     
             userToAdd.save();
-            res.redirect('../index');
+            res.redirect(307,'../index');
         }
             
         
