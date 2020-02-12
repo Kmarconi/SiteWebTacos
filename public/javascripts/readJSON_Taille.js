@@ -38,7 +38,7 @@ $(document).ready(function() {
         var option = "<option value="+f['NbViandes']+">"+f['Nom']+" ("+f['NbViandes']+" viande(s))</option>";
         $(option).appendTo(tailleSelect);
       })
-    })
+    });
 
 });
 

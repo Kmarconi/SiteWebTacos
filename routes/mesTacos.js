@@ -14,12 +14,19 @@ router.get('/getAll', function(req, res, next) {
 
   const username = req.query.username;
 
+  if(!username) {
+    res.send("Missing arguments !!");
+  }
+
   Promise.all([
-    Tacos.find({ username: username }).exec()
+    Tacos.find({ user: username }).exec()
   ])
   .then(function(data) {
     var tacos = data[0];
-    console.log(tacos);
+    res.send(tacos);
+  })
+  .catch(function(err){
+    res.send("error");
   });
 
 });
