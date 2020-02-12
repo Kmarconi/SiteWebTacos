@@ -19,7 +19,8 @@ $(document).ready(function() {
         .done(function() {
             if(verifyResult == "accepted")
             {
-                alert("Compte créé");
+                //alert("Compte créé");
+                createCookie("session",username,2);
                 window.location.href="http://localhost:3000/index";
             }
             else
@@ -30,3 +31,10 @@ $(document).ready(function() {
 
     });
 });
+
+function createCookie(cookieName,cookieValue,daysToExpire)
+{
+    var date = new Date();
+    date.setTime(date.getTime()+(daysToExpire*24*60*60*1000));
+    document.cookie = cookieName + "=" + cookieValue + "; expires=" + date.toGMTString();
+}

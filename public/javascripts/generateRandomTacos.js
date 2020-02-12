@@ -22,6 +22,10 @@ var tampSauce="";
 var dictTacos={};
 var checkBoxSupp=document.getElementById("supplementCheckB");
 var boolSupp=false;
+var viandesTacos = [];
+var saucesTacos = [];
+var supplementsTacos = [];
+var verifyResult;
 
 $(document).ready(function() {
     $.when(
@@ -38,10 +42,39 @@ $(document).ready(function() {
           supplements = data;
         },'json')
       )
+    var user = accessCookie("session");
+    if (user!="")
+    {
+        $("#buttonSign").click(function () {
+            document.cookie = "session=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+            document.location.reload();
+        })
+        .text("Deconnexion");
+    }else
+    {
+        $("#buttonSign").text("SIGN IN / SIGN UP").attr("href","signin");
+    }
 });
+
+function accessCookie(cookieName)
+{
+    var name = cookieName + "=";
+    var allCookieArray = document.cookie.split(';');
+    for(var i=0; i<allCookieArray.length; i++)
+    {
+        var temp = allCookieArray[i].trim();
+        if (temp.indexOf(name)==0)
+        return temp.substring(name.length,temp.length);
+    }
+    return "";
+}
 
 function generateRandomTaille()
 {
+    
+    viandesTacos = [];
+    saucesTacos = [];
+    supplementsTacos = [];
     boolSupp=checkBoxSupp.checked;
     dictTacos={};
     randomTaille=1+Math.round(Math.random()*4);
@@ -101,10 +134,18 @@ function generateRandomTaille()
     var suppOfTacos   = "<h4 class=element> Supplément(s) : ";
     for(var key in dictTacos)
     {
-        //console.log(key);
-        if(key.includes("Viande"))viandeOfTacos+=dictTacos[key] +", ";
-        else if(key.includes("Sauce"))saucesOfTacos+=dictTacos[key]+", ";
-        else if(key.includes("Supplément"))suppOfTacos+=dictTacos[key]+", ";
+        if(key.includes("Viande")){
+            viandeOfTacos+=dictTacos[key] +", ";
+            viandesTacos.push(dictTacos[key]);
+        }
+        else if(key.includes("Sauce")){
+            saucesOfTacos+=dictTacos[key]+", ";
+            saucesTacos.push(dictTacos[key]);
+        }
+        else if(key.includes("Supplément")){
+            suppOfTacos+=dictTacos[key]+", ";
+            supplementsTacos.push(dictTacos[key]);
+        }
     }
     viandeOfTacos=viandeOfTacos.substring(0,viandeOfTacos.length-2);
     saucesOfTacos=saucesOfTacos.substring(0,saucesOfTacos.length-2);
@@ -116,12 +157,47 @@ function generateRandomTaille()
     $(page).append(viandeOfTacos);
     $(page).append(saucesOfTacos);
     if(boolSupp)$(page).append(suppOfTacos);
-    
-    var labelToAdd='<h3 class =element>Prix : '+Math.max( Math.round(prixTacos * 10) / 10, 2.8 ).toFixed(2)+' € </h3>';
+    prixTacos = Math.max( Math.round(prixTacos * 10) / 10, 2.8 ).toFixed(2);
+    var labelToAdd='<h3 class =element>Prix : '+prixTacos+' € </h3>';
     $(page).append(labelToAdd);
     boutonRandom.style.marginRight="20px";
-    $(boutonRandom).after('<button class="btn btn-default btn-lg" marginLeft=25px role="button" href="mesTacos">Enregistrer le tacos</button>');
+    $(boutonRandom).after('<button id="buttonAddTacos" class="btn btn-default btn-lg" marginLeft=25px>Enregistrer le tacos</button>');
 
-    //console.log(dictTacos);
-    //console.log("Prix : " +prixTacos +" €");
+    $("#buttonAddTacos").click(function() {
+        var user = accessCookie("session");
+        if(user != ""){
+          var note = prompt("Quelle note sur 10 voulez-vous attribuer à ce tacos ?");
+          if(note <=10 && note >=0){
+            var jsonTacos = new Object();
+            jsonTacos.user = user;
+            jsonTacos.taille = tailleTacos;
+            jsonTacos.viandes = viandesTacos;
+            jsonTacos.sauces = saucesTacos;
+            jsonTacos.supplements = supplementsTacos;
+            jsonTacos.prix = prixTacos;
+            jsonTacos.note = note;
+            $.post("http://localhost:3000/randomTacos/add", {jsonTacos:JSON.stringify(jsonTacos)},function(data,status) {
+                      verifyResult = data;
+                    },'text');
+          }else{
+            alert("Note incorrecte");
+          }
+        }else{
+          alert("Il faut être connecté pour ajouter un tacos à sa liste");
+        }
+        
+    });
+}
+
+function accessCookie(cookieName)
+{
+    var name = cookieName + "=";
+    var allCookieArray = document.cookie.split(';');
+    for(var i=0; i<allCookieArray.length; i++)
+    {
+        var temp = allCookieArray[i].trim();
+        if (temp.indexOf(name)==0)
+        return temp.substring(name.length,temp.length);
+    }
+    return "";
 }
