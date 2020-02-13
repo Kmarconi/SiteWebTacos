@@ -43,14 +43,6 @@ Front :
 ```
 npm install
 ```
-> Inutiles ?
-> npm install mongoose
-> npm install express
-> npm install crypto
-> npm install ejs
-> npm install jsdom
-> npm install jquery
-> npm install body-parser
 - Lancez le serveur :
 ```
 npm run start
