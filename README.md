@@ -10,15 +10,15 @@ Site Web Tacos EI5
 
 
 ### Pages
-- Construire son tacos avec des ingrédients (avec les contraintes associées) (POST)
+- Accueil
 
-- Score par rapport à la compo (si compo parfaite : 10/10)
+- Création de compte ET connection
 
-- Classement des meilleurs tacos (GET)
+- Création d'un tacos (et enregistrement si connecté)
 
-- Choisir taille => tacos random (POST)
+- Création aléatoire de tacos (et enregistrement si connecté)
 
-- Ajouter le tacos à la db que si sa compo n’existe pas sinon incrémenter un compteur
+- Retrouver tous ses tacos si l'utilisateur est connecté
 
 
 ### Technologies
@@ -26,14 +26,15 @@ Base de données : MongoDB
  
 Back : 
  - Langage : Nodejs
- - Communication avec BDD : mongoose
- - Communication avec front (API REST) : express
+ - Communication avec la base de données : mongoose
+ - Exposition des routes du back : express
+ - Sécurisation des mots de passe en base (hashage + salage) : crypto
  
 Front :
- - Langage : Nodejs
- - Communication avec back : javascript http library
- - Affichage des pages : express + ejs
+ - Langage : Javascript pur
+ - Affichage des pages : ejs
  - Modification des éléments html : jquery
+ - Communication avec back : requête http de jquery
  
 ### Installations
 - Installez [Nodejs](https://nodejs.org)
@@ -41,15 +42,14 @@ Front :
 - Executez les commandes suivantes à la racine de votre projet :
 ```
 npm install
-npm install express
-npm install mongoose
-npm install ejs
-npm install jsdom
-npm install jquery
 ```
 - Lancez le serveur :
 ```
 npm run start
+```
+- Lancez le serveur en mode débug :
+```
+npm run dev
 ```
 - Lier Visual Studio Code à Github :
 ```
