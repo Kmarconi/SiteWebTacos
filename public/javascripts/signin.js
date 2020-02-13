@@ -5,12 +5,7 @@ var verifyResult;
 $(document).ready(function() {
 
     $("#testConnexionButton").click(function() {
-
         checkCookie();
-            /*$('#verifyResultText').text(function(i, oldText) {
-                return "Verified !!";
-            });*/
-        
     });
     
     $("#verifyConnexionButton").click(function() {
@@ -34,9 +29,6 @@ $(document).ready(function() {
             }
             else if(verifyResult == "refused")
             {
-                /*deconnection("session");
-                checkCookie();
-                window.location.href="http://localhost:3000/index";*/
                 alert("Mot de passe ou nom d'utilisateur incorrect");
             }
 
@@ -73,13 +65,4 @@ function checkCookie()
     {
         alert("Welcome Back " + user + "!!!");
     }
-    /*else
-    {
-        user = prompt("Please enter your name");
-        num = prompt("How many days you want to store your name on your computer?");
-        if (user!="" && user!=null)
-        {
-            createCookie("testCookie", user, num);
-        }
-    }*/
 }

@@ -17,8 +17,6 @@ var randomTacosRouter = require('./routes/randomTacos');
 var dataTacosRouter = require('./routes/dataTacos.js');
 var signupRouter = require('./routes/signup');
 
-
-
 var app = express();
 
 // view engine setup

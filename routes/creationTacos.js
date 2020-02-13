@@ -13,11 +13,6 @@ router.get('/', function(req, res, next) {
 router.post('/add', function(req, res, next) {
   const stringTacos = req.body.jsonTacos;
   var jsonTacos = JSON.parse(stringTacos);
-  
-  //Promise.all([
-  //  User.findOne({ username: username }).exec()
-  //])
-  //.then(function(data) {
 
     const tacos = new Tacos({
       user: jsonTacos.user,
@@ -30,6 +25,5 @@ router.post('/add', function(req, res, next) {
     });
   
     tacos.save();
-  //});
 });
 module.exports = router;

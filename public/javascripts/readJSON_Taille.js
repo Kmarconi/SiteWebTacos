@@ -62,7 +62,6 @@ function tailleSelected(select){
 
  function addSupplement(){
   if(nbSup<4){
-    //var supDiv = '<div id="supDiv'+nbSup+'" class="supplements"></div>'
     var supSection = '<section id="supSection'+idSup+'"></Section>'
     var supSelect = '<select name="supplement" id="sup-select'+idSup+'"><option value="">-- Choisir un supplément --</option></select>';
     var buttonDel = '<button id="delButton'+idSup+'" value="'+idSup+'" onclick="deleteSupplement(this)">x</button>';

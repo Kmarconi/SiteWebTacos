@@ -19,7 +19,6 @@ $(document).ready(function() {
         .done(function() {
             if(verifyResult == "accepted")
             {
-                //alert("Compte créé");
                 createCookie("session",username,2);
                 window.location.href="http://localhost:3000/index";
             }
