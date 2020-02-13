@@ -31,4 +31,20 @@ router.get('/getAll', function(req, res, next) {
 
 });
 
+router.get('/delete', function(req, res, next) {
+
+  const id = req.query.id;
+
+  if(!id) {
+    res.send("Missing arguments !!");
+  }
+  
+  Tacos.remove({ id: id }, function(err) {
+    console.log(err);
+  });
+
+  res.send("coucou");
+
+});
+
 module.exports = router;

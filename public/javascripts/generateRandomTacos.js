@@ -176,7 +176,7 @@ function generateRandomTaille()
             jsonTacos.supplements = supplementsTacos;
             jsonTacos.prix = prixTacos;
             jsonTacos.note = note;
-            $.post("http://localhost:3000/randomTacos/add", {jsonTacos:JSON.stringify(jsonTacos)},function(data,status) {
+            $.post("http://localhost:3000/creationTacos/add", {jsonTacos:JSON.stringify(jsonTacos)},function(data,status) {
                       verifyResult = data;
                     },'text');
             alert("Tacos rajouté dans ta liste !")
