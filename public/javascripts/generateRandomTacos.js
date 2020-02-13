@@ -152,7 +152,7 @@ function generateRandomTaille()
         var user = accessCookie("session");
         if(user != ""){
           var note = prompt("Quelle note sur 10 voulez-vous attribuer à ce tacos ?");
-          if(note <=10 && note >=0){
+          if(note <=10 && note >=0 && note != null){
             var jsonTacos = new Object();
             jsonTacos.user = user;
             jsonTacos.taille = tailleTacos;
@@ -166,7 +166,9 @@ function generateRandomTaille()
                     },'text');
             alert("Tacos rajouté dans ta liste !")
           }else{
-            alert("Note incorrecte");
+            if(note != null){
+                alert("Note incorrecte");
+            }
           }
         }else{
           alert("Il faut être connecté pour ajouter un tacos à sa liste");

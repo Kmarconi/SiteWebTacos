@@ -209,7 +209,7 @@ function deleteSupplement(button){
       $(page).append(sup);
     }
     prixTacos=prix;
-    $(page).append('</br><h3>Prix : '+prix+' €</h3>');
+    $(page).append('</br><h3>Prix : '+Math.max( Math.round(prix * 10) / 10, 2.8 ).toFixed(2)+' €</h3>');
     $(page).append('<a id="buttonNewTacos" class="btn btn-default btn-lg" role="button" href="CreationTacos">Faire un autre tacos</a>');
     $(page).append('<button id="buttonAddTacos" class="btn btn-action btn-lg">Ajouter à "mes tacos"</button>');
     var buttonNewTacos = document.getElementById("buttonNewTacos");
@@ -219,7 +219,7 @@ function deleteSupplement(button){
       var user = accessCookie("session");
       if(user != ""){
         var note = prompt("Quelle note sur 10 voulez-vous attribuer à ce tacos ?");
-        if(note <=10 && note >=0){
+        if(note <=10 && note >=0 && note != null){
           var jsonTacos = new Object();
           jsonTacos.user = user;
           jsonTacos.taille = taille;
@@ -233,7 +233,9 @@ function deleteSupplement(button){
                   },'text');
           alert("Tacos rajouté dans ta liste !")
         }else{
-          alert("Note incorrecte");
+          if(note != null){
+            alert("Note incorrecte");
+          }
         }
       }else{
         alert("Il faut être connecté pour ajouter un tacos à sa liste");
