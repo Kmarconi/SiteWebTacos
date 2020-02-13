@@ -39,12 +39,9 @@ router.get('/delete', function(req, res, next) {
     res.send("Missing arguments !!");
   }
   
-  Tacos.remove({ id: id }, function(err) {
-    console.log(err);
-  });
+  Tacos.remove({ id: id }, function() {});
 
-  res.send("coucou");
-
+  res.send("deleted");
 });
 
 module.exports = router;
