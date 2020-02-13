@@ -1,9 +1,6 @@
 var verifyResult;
 
 $(document).ready(function() {
-    
-    //$(".nav navbar-nav pull-right").append('<li><a class="btn" href="signin">SIGN IN / SIGN UP</a></li>')
-    //addtoLi();
     var user = accessCookie("session");
     if (user!="")
     {
@@ -13,13 +10,17 @@ $(document).ready(function() {
         })
         .text("Deconnexion");
         $("#listTop").append('<li><a class="widget-title">Connecté en tant que '+user+'</a></li>');
+        $("#signUpDownPage").click(function () {
+            document.cookie = "session=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+            document.location.reload();
+        })
+        .text("Deconnexion").attr("href","index");
     }else
     {
-        $("#buttonSign").text("SIGN IN / SIGN UP").attr("href","signin");
+        $("#buttonSign").text("Connexion / Inscription").attr("href","signin");
+        $("#signUpDownPage").text("Connexion / Inscription").attr("href","signin");
     }
-
 });
-
 function accessCookie(cookieName)
 {
     var name = cookieName + "=";
