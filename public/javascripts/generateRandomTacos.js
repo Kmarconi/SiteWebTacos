@@ -42,18 +42,7 @@ $(document).ready(function() {
           supplements = data;
         },'json')
       )
-    var user = accessCookie("session");
-    if (user!="")
-    {
-        $("#buttonSign").click(function () {
-            document.cookie = "session=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-            document.location.reload();
-        })
-        .text("Deconnexion");
-    }else
-    {
-        $("#buttonSign").text("SIGN IN / SIGN UP").attr("href","signin");
-    }
+    
 });
 
 function accessCookie(cookieName)

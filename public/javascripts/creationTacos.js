@@ -11,9 +11,16 @@ $(document).ready(function() {
             document.location.reload();
         })
         .text("Deconnexion");
+        $("#listTop").append('<li><a class="widget-title">Connecté en tant que '+user+'</a></li>');
+        $("#signUpDownPage").click(function () {
+            document.cookie = "session=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+            document.location.reload();
+        })
+        .text("Deconnexion").attr("href","index");
     }else
     {
         $("#buttonSign").text("SIGN IN / SIGN UP").attr("href","signin");
+        $("#signUpDownPage").text("SIGN IN / SIGN UP").attr("href","signin");
     }
 });
 function accessCookie(cookieName)
