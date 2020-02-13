@@ -8,7 +8,7 @@ $(document).ready(function() {
     $.when(
         $.get("http://localhost:3000/mesTacos/getAll", {username: "Thibault"}, function(data,status) {
             tacosTab = data;
-        },'json'),
+        },'json')
     )
     .done(function() {
         //Utilisation du tableau de tacos
@@ -105,5 +105,6 @@ function accessCookie(cookieName)
 }
 
 function deleteTacos(id){
-    alert(id);
+    $.get("http://localhost:3000/mesTacos/delete", {id:id},function(data,status) {},'Number');
+    window.location.href = "http://localhost:3000/mesTacos";
 }
