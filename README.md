@@ -36,6 +36,12 @@ Front :
  - Modification des éléments html : jquery
  - Communication avec back : requête http de jquery
  
+### Améliorations possibles
+
+- Mots de passes à hacher et saler dans le front au lieu du back : cela évitera de les passer en clair sur le réseau.
+
+- Code modifiant les éléments HTML à harmoniser : certaines portions utilisent jquery et d'autre utilisent du javascript pur.
+ 
 ### Installations
 - Installez [Nodejs](https://nodejs.org)
 - Installez [Mongodb](https://www.mongodb.com/download-center/community)
