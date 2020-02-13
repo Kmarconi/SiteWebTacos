@@ -17,12 +17,6 @@ $(document).ready(function() {
         //Affichage de la note du premier par exemple
         //alert(tacosTab[0].note);
     });
-    //
-
-
-    
-    //$(".nav navbar-nav pull-right").append('<li><a class="btn" href="signin">SIGN IN / SIGN UP</a></li>')
-    //addtoLi();
     var user = accessCookie("session");
     if (user!="")
     {
@@ -31,6 +25,12 @@ $(document).ready(function() {
             document.location.reload();
         })
         .text("Deconnexion");
+        $("#listTop").append('<li><a class="widget-title">Connecté en tant que '+user+'</a></li>');
+        $("#signUpDownPage").click(function () {
+            document.cookie = "session=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+            document.location.reload();
+        })
+        .text("Deconnexion").attr("href","index");
         $.when(
             $.get("http://localhost:3000/mesTacos/getAll", {username: user}, function(data,status) {
                 tacosTab = data;
@@ -85,7 +85,8 @@ $(document).ready(function() {
     }else
     {
         alert("Il faut être connecté pour accéder à ses tacos !");
-        $("#buttonSign").text("SIGN IN / SIGN UP").attr("href","signin");
+        $("#buttonSign").text("Connexion / Inscription").attr("href","signin");
+        $("#signUpDownPage").text("Connexion / Inscription").attr("href","signin");
     }
 
 });
