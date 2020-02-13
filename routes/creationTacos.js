@@ -24,9 +24,11 @@ router.post('/add', function(req, res, next) {
   ])
   .then(function(data) {
 
-    console.log(data[0]);
+    var lastId = 0;
 
-    const lastId = data[0][0].id + 1;
+    if(data[0][0] != null) {
+      lastId = data[0][0].id + 1;
+    }
 
     const tacos = new Tacos({
       id: lastId,
