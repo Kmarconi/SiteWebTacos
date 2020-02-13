@@ -19,8 +19,8 @@ $(document).ready(function() {
         .text("Deconnexion").attr("href","index");
     }else
     {
-        $("#buttonSign").text("SIGN IN / SIGN UP").attr("href","signin");
-        $("#signUpDownPage").text("SIGN IN / SIGN UP").attr("href","signin");
+        $("#buttonSign").text("Connexion / Inscription").attr("href","signin");
+        $("#signUpDownPage").text("Connexion / Inscription").attr("href","signin");
     }
 });
 function accessCookie(cookieName)

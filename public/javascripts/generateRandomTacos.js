@@ -69,8 +69,7 @@ function generateRandomTaille()
     randomTaille=1+Math.round(Math.random()*4);
     tailleTacos=tailles['Tailles'][randomTaille-1]['Nom'];
     prixTacos=Number(tailles['Tailles'][randomTaille-1]['Prix']);
-    
-    //var tacosJSON=tailles['Tailles'][randomTaille];
+
     for(let i=1;i<=randomTaille;i++)
     {
         randomIndexViande=Math.round(Math.random()*(viandes['Viandes'].length-1));
@@ -101,7 +100,6 @@ function generateRandomTaille()
     if(boolSupp)
     {
         randomNbSupp=1+Math.round(Math.random()*3);
-        //console.log("Nombre de suppléments : "+randomNbSupp);
         for(let i=1;i<=randomNbSupp;i++)
         {
             randomIndexSupp=Math.round(Math.random()*(supplements['Suppléments'].length-1));
@@ -117,7 +115,6 @@ function generateRandomTaille()
     
     var labelToAdd='<h3 class =element>Votre Tacos ('+tailleTacos+') : </h3>';
     $(page).append(labelToAdd);
-    //$(page).append('</br>');
     var viandeOfTacos = "<h4 class=element> Viande(s) : ";
     var saucesOfTacos = "<h4 class=element> Sauce(s) : ";
     var suppOfTacos   = "<h4 class=element> Supplément(s) : ";
@@ -142,7 +139,6 @@ function generateRandomTaille()
     viandeOfTacos+='</h4>';
     saucesOfTacos+='</h4>';
     suppOfTacos+='</h4>';
-    //var labelToAdd='<h4 class=element>'+f+'</h4>';
     $(page).append(viandeOfTacos);
     $(page).append(saucesOfTacos);
     if(boolSupp)$(page).append(suppOfTacos);
